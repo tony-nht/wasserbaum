@@ -542,14 +542,6 @@ for k, v in pairs(theme) do
 	base[k] = v
 end
 
-local highlights_fixes = {
-	MiniStatuslineModeNormal = { fg = black, bg = light_yellow },
-	Identifier = { fg = "#000000" },
-}
-for group, opts in pairs(highlights_fixes) do
-	vim.api.nvim_set_hl(0, group, opts)
-end
-
 return base
 -- for group, opts in pairs(base) do
 -- 	api.nvim_set_hl(0, group, opts)
