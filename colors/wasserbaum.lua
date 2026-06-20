@@ -1,3 +1,11 @@
+local black = "#000000"
+local light_yellow = "#f9eab3"
+local highlights_fixes = {
+	MiniStatuslineModeNormal = { fg = black, bg = light_yellow },
+	Identifier = { fg = "#000000" },
+	["variable"] = { fg = black },
+	["@variable"] = { fg = black },
+}
 local colors = {
 	-- content here will not be touched
 	-- PATCH_OPEN
@@ -379,6 +387,8 @@ rubyClassVariable = {link = "rubyInstancevariable"},
 ["@variable.parameter.reference"] = {fg = "#a55000"},
 	-- PATCH_CLOSE
 	-- content here will not be touched
+	["variable"] = { fg = black },
+	["@variable"] = { fg = black },
 }
 
 vim.cmd("let g:colors_name='wasserbaum'")
@@ -387,13 +397,6 @@ vim.cmd("let g:colors_name='wasserbaum'")
 for group, attrs in pairs(colors) do
 	vim.api.nvim_set_hl(0, group, attrs)
 end
-
-local black = "#000000"
-local light_yellow = "#f9eab3"
-local highlights_fixes = {
-	MiniStatuslineModeNormal = { fg = black, bg = light_yellow },
-	Identifier = { fg = "#000000" },
-}
 for group, opts in pairs(highlights_fixes) do
 	vim.api.nvim_set_hl(0, group, opts)
 end
