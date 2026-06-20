@@ -524,7 +524,6 @@ local theme = lush(function()
 		CursorLine({ bg = Normal.bg.darken(12) }), -- lighten() can also be called via li()
 		Visual({ fg = Normal.bg, bg = Normal.fg }), -- Try pressing v and selecting some text
 		Comment({ fg = water.de(47).da(43) }),
-		Identifier = { fg = "#000000" },
 		Keyword({ fg = wood }),
 		String({ fg = leaf.sa(49).da(25) }),
 		Function({ fg = water_deep }),
@@ -541,6 +540,14 @@ end)
 
 for k, v in pairs(theme) do
 	base[k] = v
+end
+
+local highlights_fixes = {
+	MiniStatuslineModeNormal = { fg = black, bg = light_yellow },
+	Identifier = { fg = "#000000" },
+}
+for group, opts in pairs(highlights_fixes) do
+	vim.api.nvim_set_hl(0, group, opts)
 end
 
 return base
