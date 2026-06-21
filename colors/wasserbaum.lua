@@ -1,11 +1,54 @@
+local o = vim.o
+local g = vim.g
+local api = vim.api
+
+vim.cmd("hi clear")
+
+if g.syntax_on == 1 then
+	vim.cmd("syntax reset")
+end
+
+o.background = "light"
+g.colors_name = "wasserbaum"
+
+local background = "#f2f2f2"
+local grey_bg_light = "#ececec"
 local black = "#000000"
+local blue = "#1561b8"
+local green = "#1C5708"
+local light_green = "#dfeacc"
+local light_red = "#f2d3cd"
+local red = "#c4331d"
+local grey = "#5e5e5e"
+local light_grey = "#e6e6e6"
+local border = "#cccccc"
+local highlight = "#eeeeee"
+local dark_yellow = "#b37f02"
+local yellow = "#f9db70"
 local light_yellow = "#f9eab3"
-local highlights_fixes = {
-	MiniStatuslineModeNormal = { fg = black, bg = light_yellow },
-	Identifier = { fg = "#000000" },
-	["variable"] = { fg = black },
-	["@variable"] = { fg = black },
-}
+local orange = "#a55000"
+local purple = "#5c21a5"
+local white = "#ffffff"
+local cyan = "#007872"
+
+g.terminal_color_0 = black
+g.terminal_color_1 = red
+g.terminal_color_2 = green
+g.terminal_color_3 = dark_yellow
+g.terminal_color_4 = blue
+g.terminal_color_5 = purple
+g.terminal_color_6 = cyan
+g.terminal_color_7 = white
+
+g.terminal_color_8 = black
+g.terminal_color_9 = red
+g.terminal_color_10 = green
+g.terminal_color_11 = dark_yellow
+g.terminal_color_12 = blue
+g.terminal_color_13 = purple
+g.terminal_color_14 = cyan
+g.terminal_color_15 = white
+
 local colors = {
 	-- content here will not be touched
 	-- PATCH_OPEN
@@ -385,12 +428,13 @@ variable = {fg = "#000000"},
 	-- content here will not be touched
 }
 
-vim.cmd("let g:colors_name='wasserbaum'")
-
--- apply highlight groups
 for group, attrs in pairs(colors) do
 	vim.api.nvim_set_hl(0, group, attrs)
 end
+
+local highlights_fixes = {
+	MiniStatuslineModeNormal = { fg = black, bg = light_yellow },
+}
 for group, opts in pairs(highlights_fixes) do
 	vim.api.nvim_set_hl(0, group, opts)
 end
