@@ -552,10 +552,10 @@ for k, v in pairs(theme) do
 	norm_lush_theme[tostring(k)] = t
 end
 
-print("111111111")
-print(vim.inspect(base))
-print(vim.inspect(theme))
-print(vim.inspect(norm_lush_theme))
+-- print("111111111")
+-- print(vim.inspect(base))
+-- print(vim.inspect(theme))
+-- print(vim.inspect(norm_lush_theme))
 for k, v in pairs(norm_lush_theme) do
 	base[k] = v
 end
