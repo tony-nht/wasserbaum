@@ -124,6 +124,7 @@ local base = {
 	IncSearch = { link = "Search" },
 	CurSearch = { link = "Search" },
 	Include = { fg = black, bold = true },
+	InstanceVariable = { fg = purple },
 	Keyword = { fg = black, bold = true },
 	Label = { link = "Keyword" },
 	LineNr = { fg = grey },
@@ -201,6 +202,8 @@ local base = {
 	cssPseudoClassId = { link = "cssPseudoClass" },
 	["@tag.css"] = { link = "cssIdentifier" },
 	["@type.css"] = { link = "cssClassName" },
+	["@variable.css"] = { link = "cssCustomProp" },
+	["@constant.css"] = { link = "cssTagName" },
 	-- Diffs
 	DiffAdd = { bg = light_green },
 	DiffChange = { bg = highlight },
@@ -276,7 +279,9 @@ local base = {
 	inkoCommentInlineUrl = { link = "Number" },
 	inkoCommentItalic = { fg = grey, italic = true },
 	inkoCommentTitle = { fg = grey, bold = true },
+	inkoInstanceVariable = { link = "InstanceVariable" },
 	inkoKeywordArgument = { link = "Regexp" },
+	["@variable.member.inko"] = { link = "InstanceVariable" },
 	["@constant.builtin.inko"] = { link = "Keyword" },
 	-- Java
 	javaAnnotation = { link = "Directory" },
@@ -417,9 +422,11 @@ local base = {
 	-- Ruby
 	rubyAttribute = { link = "Identifier" },
 	rubyClass = { link = "Keyword" },
+	rubyClassVariable = { link = "rubyInstancevariable" },
 	rubyConstant = { link = "Constant" },
 	rubyDefine = { link = "Keyword" },
 	rubyFunction = { link = "Function" },
+	rubyInstanceVariable = { link = "InstanceVariable" },
 	rubyMacro = { link = "Identifier" },
 	rubyModule = { link = "rubyClass" },
 	rubyRegexp = { link = "Regexp" },
@@ -429,6 +436,7 @@ local base = {
 	rubyRegexpSpecial = { link = "Regexp" },
 	rubyStringDelimiter = { link = "String" },
 	rubySymbol = { link = "Symbol" },
+	["@variable.member.ruby"] = { link = "InstanceVariable" },
 	["@string.special.symbol.ruby"] = { link = "rubySymbol" },
 	-- Rust
 	rustCommentBlockDoc = { link = "Comment" },
@@ -481,11 +489,6 @@ local base = {
 	TelescopeTitle = { fg = black, bold = true },
 	TelescopeNormal = { fg = black },
 	-- Treesitter
-	["variable"] = { fg = black },
-	["@variable"] = { fg = black },
-	["@keyword"] = { fg = wood },
-	["@operator"] = { fg = black },
-	["@tag"] = { fg = black },
 	["@markup.link"] = { fg = blue },
 	["@property.json"] = { bold = true },
 	["@text.emphasis"] = { italic = true },
@@ -495,6 +498,7 @@ local base = {
 	["@variable.builtin"] = { bold = true },
 	["@string.regexp"] = { link = "Regexp" },
 	-- Custom Tree-sitter captures added by this theme.
+	["@variable.parameter.reference"] = { fg = orange },
 	-- Vimscript
 	VimCommentTitle = { link = "Todo" },
 	VimIsCommand = { link = "Constant" },
@@ -534,7 +538,25 @@ local theme = lush(function()
 	}
 end)
 
+local norm_lush_theme = {}
+
 for k, v in pairs(theme) do
+	print("K:", k)
+	print("V:", v)
+	local t = {}
+	for kk, vv in pairs(v) do
+		print("KKKK:", kk)
+		print("VVVV:", vv)
+		t[tostring(kk)] = tostring(vv)
+	end
+	norm_lush_theme[tostring(k)] = t
+end
+
+print("111111111")
+print(vim.inspect(base))
+print(vim.inspect(theme))
+print(vim.inspect(norm_lush_theme))
+for k, v in pairs(norm_lush_theme) do
 	base[k] = v
 end
 
